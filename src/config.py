@@ -1,0 +1,10 @@
+# Dimensions
+HEIGHT = 500
+WIDTH = 500
+BOARD_SIZE = (HEIGHT, WIDTH)
+TILE_SIZE = 50
+rows, cols = HEIGHT//TILE_SIZE, WIDTH//TILE_SIZE
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
