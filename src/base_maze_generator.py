@@ -9,17 +9,17 @@ class MazeGenerator(ABC):
 
     def remove_walls(self, current_cell: Cell, next_cell: Cell):
         dx = current_cell.x - next_cell.x
+        dy = current_cell.y - next_cell.y
         if dx == 1:
             current_cell.walls['left'] = False
             next_cell.walls['right'] = False
-        if dx == -1:
+        elif dx == -1:
             current_cell.walls['right'] = False
             next_cell.walls['left'] = False
-        dy = current_cell.y - next_cell.y
         if dy == 1:
             current_cell.walls['top'] = False
             next_cell.walls['bottom'] = False
-        if dy == -1:
+        elif dy == -1:
             current_cell.walls['bottom'] = False
             next_cell.walls['top'] = False
 

@@ -23,10 +23,9 @@ class Cell:
                 (0, 0, 0),
                 (pos_x, pos_y, config.TILE_SIZE, config.TILE_SIZE)
             )
-
         wall_color = (255, 255, 255)
         wall_thickness = 2
-        if self.walls['top'] == True:
+        if self.walls['top']:
             pygame.draw.line(
                 self.screen,
                 wall_color,
@@ -34,7 +33,7 @@ class Cell:
                 (pos_x+config.TILE_SIZE, pos_y),
                 wall_thickness
             )
-        if self.walls['right'] == True:
+        if self.walls['right']:
             pygame.draw.line(
                 self.screen,
                 wall_color,
@@ -42,7 +41,7 @@ class Cell:
                 (pos_x+config.TILE_SIZE, pos_y+config.TILE_SIZE),
                 wall_thickness
             )
-        if self.walls['bottom'] == True:
+        if self.walls['bottom']:
             pygame.draw.line(
                 self.screen,
                 wall_color,
@@ -50,7 +49,7 @@ class Cell:
                 (pos_x, pos_y+config.TILE_SIZE),
                 wall_thickness
             )
-        if self.walls['left'] == True:
+        if self.walls['left']:
             pygame.draw.line(
                 self.screen,
                 wall_color,

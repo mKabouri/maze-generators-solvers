@@ -1,6 +1,7 @@
 import pygame
 from maze import Maze
 from dfs_gen import DFSGenerator
+import config
 
 if __name__ == "__main__":
     maze_width, maze_height = 500, 500

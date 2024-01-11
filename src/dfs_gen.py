@@ -1,5 +1,4 @@
 from base_maze_generator import MazeGenerator
-import pygame
 
 class DFSGenerator(MazeGenerator):
     def __init__(
