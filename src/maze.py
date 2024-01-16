@@ -36,11 +36,11 @@ class Maze:
             if 0 <= x < self.cols and 0 <= y < self.rows:
                 return self.grid_cells[x+y*self.cols]
             return False
-
         neighbors = [get_cell(row, col-1), get_cell(row+1, col), get_cell(row, col+1), get_cell(row-1, col)]
-        neighbors = [neighbor for neighbor in neighbors if neighbor and not neighbor.visited]
+        neighbors = [neighbor for neighbor in neighbors if neighbor]
         return neighbors
 
     def choose_next_cell(self):
         neighbors = self.get_neighbors(self.current_cell)
+        neighbors = [neighbor for neighbor in neighbors if not neighbor.visited]
         return random.choice(neighbors) if neighbors else False

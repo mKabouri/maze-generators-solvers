@@ -1,10 +1,7 @@
 from base_maze_generator import MazeGenerator
 
 class DFSGenerator(MazeGenerator):
-    def __init__(
-            self,
-            maze
-        ):
+    def __init__(self, maze):
         super().__init__(maze)
 
     def run_algorithm(self):
@@ -16,8 +13,11 @@ class DFSGenerator(MazeGenerator):
             self.maze.visited_stack.append(next_cell)
             self.remove_walls(self.maze.current_cell, next_cell)
             self.maze.current_cell = next_cell
+            return False
         elif self.maze.visited_stack:
             self.maze.current_cell = self.maze.visited_stack.pop()
-
+            return False
+        else:
+            return True
 
 

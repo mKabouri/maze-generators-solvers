@@ -23,13 +23,14 @@ class MazeGenerator(ABC):
             current_cell.walls['bottom'] = False
             next_cell.walls['top'] = False
 
-    def display_maze(self):
+    def display_solve_maze(self, maze_solver):
         pygame.init()
-
+        solver = maze_solver(self.maze)
         pygame.display.set_caption("Maze Visualization")
         
         clock = pygame.time.Clock()
         running = True
+
         while running:
             self.maze.screen.fill((135, 156, 144))
             for event in pygame.event.get():
@@ -43,13 +44,22 @@ class MazeGenerator(ABC):
                         running = False
 
             # Maze part
-            self.run_algorithm()
+            ret = self.run_algorithm()
+
+            # Solution part
+            if ret:
+                solver.draw_path()
 
             #####
+            # Restart and start solve buttons
+
             pygame.display.flip()
             clock.tick(60)
         pygame.quit()
 
     @abstractmethod
     def run_algorithm(self):
+        """
+        Returns True if the maze is generated, False in all other cases.
+        """
         pass
