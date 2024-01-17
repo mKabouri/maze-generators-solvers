@@ -63,4 +63,4 @@ class AStarSolver:
                 (x + self.maze.tile_size//2, y+self.maze.tile_size//2),
                 self.maze.tile_size//2-2
             )
-            pygame.display.flip()
+        pygame.display.flip()
