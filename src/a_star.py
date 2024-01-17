@@ -14,8 +14,9 @@ class AStarSolver:
     def solve(self):
         open_set = []
         # Priority queue
-        heapq.heappush(open_set, (0, self.start.x, self.start.y))
+        heapq.heappush(open_set, (0, self.start.y, self.start.x))
         came_from = {}
+
         g_score = {cell: float("inf") for cell in self.maze.grid_cells}
         g_score[self.start] = 0
 
@@ -28,8 +29,12 @@ class AStarSolver:
             current = self.maze.grid_cells[current_x+current_y*self.maze.cols]
             if current == self.end:
                 return self.reconstruct_path(came_from, current)
+            # print("### NEXT ITER ###")
+            for neighbor in self.maze.get_valid_neighbors(current):
+                # print(current.x, current.y)
+                # print(neighbor.x, neighbor.y)
+                # print("NEXT NEIGHBOR")
 
-            for neighbor in self.maze.get_neighbors(current):
                 tentative_g_score = g_score[current] + 1
 
                 if tentative_g_score < g_score[neighbor]:
@@ -38,7 +43,7 @@ class AStarSolver:
                     f_score[neighbor] = tentative_g_score + self.heuristic(neighbor)
 
                     if neighbor not in [i[1:] for i in open_set]:
-                        heapq.heappush(open_set, (f_score[neighbor], neighbor.x, neighbor.y))
+                        heapq.heappush(open_set, (f_score[neighbor], neighbor.y, neighbor.x))
         return []
 
     def reconstruct_path(self, came_from, current):
@@ -52,5 +57,10 @@ class AStarSolver:
         path = self.solve()
         for cell in path:
             x, y = cell.x * self.maze.tile_size, cell.y * self.maze.tile_size
-            pygame.draw.rect(self.maze.screen, (0, 120, 120), (x, y, self.maze.tile_size, self.maze.tile_size))
-        pygame.display.flip()
+            pygame.draw.circle(
+                self.maze.screen,
+                (0, 120, 120),
+                (x + self.maze.tile_size//2, y+self.maze.tile_size//2),
+                self.maze.tile_size//2-2
+            )
+            pygame.display.flip()

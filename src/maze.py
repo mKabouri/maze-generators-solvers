@@ -26,11 +26,20 @@ class Maze:
             (cur_x, cur_y, self.tile_size, self.tile_size)
         )
 
+    def draw_cell_in_coord(self, cell, color):
+        coord_x = cell.x*self.maze.tile_size
+        coord_y = cell.y*self.maze.tile_size
+        pygame.draw.rect(
+            self.maze.screen,
+            color,
+            (coord_x, coord_y, self.maze.tile_size, self.maze.tile_size)
+        )
+
     def draw_maze(self):
         for cell in self.grid_cells:
             cell.draw_cell()
 
-    def get_neighbors(self, cell):
+    def get_unvisited_neighbors(self, cell):
         col, row = cell.x, cell.y
         def get_cell(x, y):
             if 0 <= x < self.cols and 0 <= y < self.rows:
@@ -39,8 +48,31 @@ class Maze:
         neighbors = [get_cell(row, col-1), get_cell(row+1, col), get_cell(row, col+1), get_cell(row-1, col)]
         neighbors = [neighbor for neighbor in neighbors if neighbor]
         return neighbors
+    
+    def get_valid_neighbors(self, cell):
+        col, row = cell.x, cell.y
+
+        def get_cell(x, y):
+            if 0 <= x < self.cols and 0 <= y < self.rows:
+                return self.grid_cells[x + y * self.cols]
+            return None
+
+        def valid_neighbor(neighbor):
+            # checks if there is no wall between cell and neighbor
+            if neighbor.y == row-1:
+                return not cell.walls['top']
+            if neighbor.x == col+1:
+                return not cell.walls['right']
+            if neighbor.y == row+1:
+                return not cell.walls['bottom']
+            if neighbor.x == col-1:
+                return not cell.walls['left']
+            return False
+
+        neighbors = [get_cell(row-1, col), get_cell(row, col+1), get_cell(row+1, col), get_cell(row, col-1)]
+        return [neighbor for neighbor in neighbors if neighbor and valid_neighbor(neighbor)]
 
     def choose_next_cell(self):
-        neighbors = self.get_neighbors(self.current_cell)
+        neighbors = self.get_unvisited_neighbors(self.current_cell)
         neighbors = [neighbor for neighbor in neighbors if not neighbor.visited]
         return random.choice(neighbors) if neighbors else False
