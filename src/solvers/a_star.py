@@ -1,4 +1,5 @@
 import heapq
+import time
 from solvers.base_solver import BaseSolver
 
 class AStarSolver(BaseSolver):
@@ -13,6 +14,7 @@ class AStarSolver(BaseSolver):
         return abs(cell.x - self.end.x) + abs(cell.y - self.end.y)
 
     def solve(self):
+        start_time = time.time()
         open_set = []
         # Priority queue
         heapq.heappush(open_set, (0, self.start.y, self.start.x))
@@ -28,6 +30,7 @@ class AStarSolver(BaseSolver):
             _, current_x, current_y = heapq.heappop(open_set)
             current = self.maze.grid_cells[current_x+current_y*self.maze.cols]
             if current == self.end:
+                self.solve_time = time.time() - start_time
                 return self.reconstruct_path(came_from, current)
             # print("### NEXT ITER ###")
             for neighbor in self.maze.get_valid_neighbors(current):

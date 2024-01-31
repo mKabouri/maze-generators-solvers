@@ -1,4 +1,5 @@
 from solvers.base_solver import BaseSolver
+import time
 
 class RoutingSolver(BaseSolver):
     def __init__(self, maze):
@@ -9,6 +10,7 @@ class RoutingSolver(BaseSolver):
         return abs(cell.x - self.end.x) + abs(cell.y - self.end.y)
 
     def solve(self):
+        start_time = time.time()
         path = []
         MD_best = self.heuristic(self.start)
         self.cur = self.start
@@ -23,6 +25,8 @@ class RoutingSolver(BaseSolver):
                 while self.heuristic(self.cur) != MD_best or not self.find_productive_path():
                     self.follow_hand_rule()
         path.append(self.end)
+        end_time = time.time()
+        self.solve_time = end_time - start_time
         return path
 
     def find_productive_path(self):

@@ -1,5 +1,6 @@
 import random
 from solvers.base_solver import BaseSolver
+import time
 
 class TremauxSolver(BaseSolver):
     def __init__(self, maze):
@@ -9,6 +10,7 @@ class TremauxSolver(BaseSolver):
         self.path = []
 
     def solve(self):
+        start_time = time.time()
         self.visited.add(self.current_cell)
         self.path.append(self.current_cell)
         while not self.is_exit(self.current_cell):
@@ -25,6 +27,8 @@ class TremauxSolver(BaseSolver):
                 if not self.path:
                     raise ValueError("No path found")
                 self.current_cell = self.path[-1]
+        end_time = time.time()
+        self.solve_time = end_time - start_time
         return self.path
 
     def get_unvisited_neighbors(self, cell):

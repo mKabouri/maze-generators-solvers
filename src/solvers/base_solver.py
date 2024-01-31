@@ -6,6 +6,7 @@ class BaseSolver(ABC):
         self.maze = maze
         self.start = maze.grid_cells[0]
         self.end = maze.grid_cells[-1]
+        self.solve_time = None
 
     @abstractmethod
     def solve(self):
