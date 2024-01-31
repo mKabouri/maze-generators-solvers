@@ -10,30 +10,27 @@ The project goal is to generates mazes using the Depth-First Search (DFS) algori
 
 ![MAZE GENERATOR AND SOLVER](./gen_solver.gif)
 
-
 ## Commands:
 To run the project:
 ```
 python ./src/run.py
 ```
-4. Use the following keyboard commands within the application:
-- `Q`: Quit the application
-- Other commands...
+
+You can edit config.py file for your personal settings.
+
+You can use `Q` to quit the pygame window.
 
 ## Improvements:
-Future improvements planned for this project include:
-- Implementing additional maze generation algorithms (e.g., Prim's, Kruskal's).
-- Adding more solving algorithms (e.g., BFS, Dijkstra’s Algorithm).
+- Implementing additional maze generation algorithms (e.g., Prim's, Kruskal's ...).
+- A metric to compare the complexity of generated mazes.
+- Adding more solving algorithms (e.g., Trémaux's algorithm ...).
 - Enhancing the user interface for a more interactive experience.
 - Introducing difficulty levels and customizable maze sizes.
 
+
 ## References:
-This project was inspired by and built upon various resources and tutorials:
-- [Pygame Documentation](https://www.pygame.org/docs/)
 - [A* Search Algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
-- Additional references...
+- [Maze Generation Algorithm](https://en.wikipedia.org/wiki/Maze_generation_algorithm)
 
 ## Contribution:
-Contributions to the Maze Generator and Solver are welcome. If you have ideas for improvements or find a bug, please open an issue or a pull request. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Contributions are welcome. If you have ideas for improvements.
