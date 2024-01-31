@@ -2,6 +2,7 @@ import pygame
 from maze import Maze
 from dfs_gen import DFSGenerator
 from a_star import AStarSolver
+from tremaux import TremauxSolver
 import config
 
 if __name__ == "__main__":

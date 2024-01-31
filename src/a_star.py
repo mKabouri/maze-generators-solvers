@@ -54,12 +54,34 @@ class AStarSolver:
 
     def draw_path(self):
         path = self.solve()
+        # Draw circles on top of the lines
         for cell in path:
             x, y = cell.x * self.maze.tile_size, cell.y * self.maze.tile_size
             pygame.draw.circle(
                 self.maze.screen,
                 (0, 120, 120),
-                (x + self.maze.tile_size//2, y+self.maze.tile_size//2),
-                self.maze.tile_size//2-2
+                (x + self.maze.tile_size // 2, y + self.maze.tile_size // 2),
+                self.maze.tile_size // 2 - 2
             )
+
+        for i in range(len(path) - 1):
+            current_cell = path[i]
+            next_cell = path[i + 1]
+
+            # Coordinates for the current cell's center
+            current_x, current_y = current_cell.x * self.maze.tile_size + self.maze.tile_size // 2, current_cell.y * self.maze.tile_size + self.maze.tile_size // 2
+
+            # Coordinates for the next cell's center
+            next_x, next_y = next_cell.x * self.maze.tile_size + self.maze.tile_size // 2, next_cell.y * self.maze.tile_size + self.maze.tile_size // 2
+
+            # Draw line between centers
+            pygame.draw.line(
+                self.maze.screen, 
+                (0, 255, 255),  # Line color (same as circle color)
+                (current_x, current_y), 
+                (next_x, next_y), 
+                2  # Line thickness
+            )
+
         pygame.display.flip()
+
