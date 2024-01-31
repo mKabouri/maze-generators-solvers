@@ -16,13 +16,22 @@ class Cell:
 
     def draw_cell(self):
         pos_x, pos_y = self.x*config.TILE_SIZE, self.y*config.TILE_SIZE
-        if self.visited:
-            # If a cell is visited it becomes black
-            pygame.draw.rect(
-                self.screen,
-                (0, 0, 0),
-                (pos_x, pos_y, config.TILE_SIZE, config.TILE_SIZE)
-            )
+        endpoint = (self.x == (config.WIDTH//config.TILE_SIZE)-1) and (self.y == (config.HEIGHT//config.TILE_SIZE)-1)
+
+        if endpoint:
+            cell_color = (0, 255, 0)  # Green color for the endpoint
+        if endpoint:
+            cell_color = (0, 255, 0)  # Green color for the endpoint
+        elif self.visited:
+            cell_color = (0, 0, 0)  # Black color for visited cells
+        else:
+            cell_color = (255, 255, 255)  # Default color for unvisited cells
+
+        pygame.draw.rect(
+            self.screen,
+            cell_color,
+            (pos_x, pos_y, config.TILE_SIZE, config.TILE_SIZE)
+        )
         wall_color = (255, 255, 255)
         wall_thickness = 2
         if self.walls['top']:

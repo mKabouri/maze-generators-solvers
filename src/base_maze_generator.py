@@ -50,9 +50,6 @@ class MazeGenerator(ABC):
             if ret:
                 solver.draw_path()
 
-            #####
-            # Restart and start solve buttons
-
             pygame.display.flip()
             clock.tick(60)
         pygame.quit()
