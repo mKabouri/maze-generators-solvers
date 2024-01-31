@@ -13,4 +13,4 @@ if __name__ == "__main__":
 
     maze = Maze(maze_height, maze_width, tile_size, screen)
     generator = DFSGenerator(maze)
-    generator.display_solve_maze(TremauxSolver, gif=False)
+    generator.display_solve_maze(RoutingSolver, gif=False)

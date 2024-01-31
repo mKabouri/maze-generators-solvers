@@ -36,4 +36,4 @@ class TremauxSolver(BaseSolver):
         return [n for n in neighbors if n not in self.visited]
 
     def is_exit(self, cell):
-        return cell.x == self.maze.cols - 1 and cell.y == self.maze.rows - 1
+        return cell.x == self.maze.cols-1 and cell.y == self.maze.rows-1
