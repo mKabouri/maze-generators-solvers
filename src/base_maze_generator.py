@@ -25,13 +25,14 @@ class MazeGenerator(ABC):
             current_cell.walls['bottom'] = False
             next_cell.walls['top'] = False
 
-    def display_solve_maze(self, maze_solver):
+    def display_solve_maze(self, maze_solver, gif=False):
         pygame.init()
         solver = maze_solver(self.maze)
         pygame.display.set_caption("Maze Visualization")
         
         clock = pygame.time.Clock()
-        frame_number = 0
+        if gif:
+            frame_number = 0
 
         running = True
         while running:
@@ -57,13 +58,14 @@ class MazeGenerator(ABC):
             clock.tick(60)
 
             # For gif
-            pygame.image.save(self.maze.screen, f'screenshot_{frame_number:04d}.png')
-            frame_number += 1  # Increment frame number
-
-        frames = [Image.open(image) for image in glob.glob("screenshot_*.png")]
-        frame_one = frames[0]
-        frame_one.save("maze_visualization.gif", format="GIF", append_images=frames,
-                       save_all=True, duration=10, loop=0)
+            if gif:
+                pygame.image.save(self.maze.screen, f'screenshot_{frame_number:04d}.png')
+                frame_number += 1  # Increment frame number
+        if gif:
+            frames = [Image.open(image) for image in glob.glob("screenshot_*.png")]
+            frame_one = frames[0]
+            frame_one.save("maze_visualization.gif", format="GIF", append_images=frames,
+                        save_all=True, duration=10, loop=0)
 
         pygame.quit()
 
