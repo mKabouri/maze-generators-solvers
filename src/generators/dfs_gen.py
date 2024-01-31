@@ -1,4 +1,4 @@
-from base_maze_generator import MazeGenerator
+from generators.base_maze_generator import MazeGenerator
 
 class DFSGenerator(MazeGenerator):
     def __init__(self, maze):
