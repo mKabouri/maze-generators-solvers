@@ -23,7 +23,6 @@ class AStarSolver:
         f_score = {cell: float("inf") for cell in self.maze.grid_cells}
         f_score[self.start] = self.heuristic(self.start)
 
-
         while open_set:
             _, current_x, current_y = heapq.heappop(open_set)
             current = self.maze.grid_cells[current_x+current_y*self.maze.cols]
