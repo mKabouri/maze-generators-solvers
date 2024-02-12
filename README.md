@@ -1,8 +1,5 @@
 # maze-generator-solver
 
-## Motivation:
-I really like mazes. This is the main motivation behind chosing this project. My goal is to have a small modular library for maze generator algorithms and solvers.
-
 ## Description:
 The project goal is to generates mazes using [maze generation algorithms](https://en.wikipedia.org/wiki/Maze_generation_algorithm) (like Depth-First Search (DFS) algorithm) and solves them using [search algorithms](https://en.wikipedia.org/wiki/Maze-solving_algorithm) (like in our case A* (A STAR), tremaux, routing search algorithms (see ./src/solvers/*)).
 
